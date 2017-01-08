@@ -1,5 +1,5 @@
 //SmartAnts
-//Generic Algoritm
+//Ants using a Generic Algoritm to find a target
 
 
 int lifespan = 200;
