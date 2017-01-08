@@ -1,4 +1,6 @@
-//Smart Rockets
+//SmartAnts
+//Generic Algoritm
+
 
 int lifespan = 200;
 int lifeCount = 0;
