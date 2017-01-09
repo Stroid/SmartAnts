@@ -20,7 +20,7 @@ void setup() {
   population = new Population(20);
 
   target = new PVector(width/2, 30);
-  
+
   hud = new HUD();
 }
 
@@ -36,9 +36,9 @@ void draw() {
   if (lifeCount == lifespan) {
     avgFit = population.evaluate();
     population.selection();
-    
+
     lifeCount = 0;
-    
+
     hud.iterations++;
   }
 

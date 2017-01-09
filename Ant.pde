@@ -36,7 +36,7 @@ class Ant {
     this.addForce(this.dna.genes.get(lifeCount));
 
     float d = dist(this.pos.x, this.pos.y, target.x, target.y);
-    if(d<10 && !finished){
+    if (d<10 && !finished) {
       this.finished = true;
       this.finishFrame = lifeCount;
     }
@@ -65,9 +65,9 @@ class Ant {
     float d = dist(this.pos.x, this.pos.y, target.x, target.y);
 
     this.fittnes = map(d, 0, width, width, 0);
-    
-    if(this.finished){
-      this.fittnes *= map(finishFrame,0,300,10,1);
+
+    if (this.finished) {
+      this.fittnes *= map(finishFrame, 0, 300, 10, 1);
     }
   }
 

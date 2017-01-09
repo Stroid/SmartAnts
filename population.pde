@@ -11,8 +11,8 @@ class Population {
   public float evaluate() {
     float maxFit = 0;
     float total = 0;
-    
-    
+
+
     this.matingPool.clear();
 
     for (int I = 0; I < this.populationArray.size(); I++) {
@@ -34,7 +34,7 @@ class Population {
         this.matingPool.add(this.populationArray.get(I));
       }
     }
-    
+
     hud.lastMax = maxFit;
     return total/this.populationArray.size();
   }
@@ -53,10 +53,10 @@ class Population {
       DNA parrentA = matingPool.get(indexA).dna;
       DNA parrentB = matingPool.get(indexB).dna;
       DNA child = parrentA.crossover(parrentB);
-      
+
       //Perform a mutation on the child genes
       child.mutation();
-      
+
       //Make a new Population of ants whith the child dna.
       newPopulation.add(new Ant(child));
     }
