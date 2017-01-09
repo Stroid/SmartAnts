@@ -1,6 +1,5 @@
 //SmartAnts
 //Ants using a Generic Algoritm to find a target
-//Testing git
 
 int lifespan = 200;
 int lifeCount = 0;
