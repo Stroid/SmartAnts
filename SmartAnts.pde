@@ -4,11 +4,15 @@
 int lifespan = 300;
 int lifeCount = 0;
 
+float avgFit = 0;
+
 color bgColor = color(0);
 
 Population population;
 
 PVector target;
+
+HUD hud;
 
 void setup() {
   size(480, 360);
@@ -16,6 +20,8 @@ void setup() {
   population = new Population(20);
 
   target = new PVector(width/2, 30);
+  
+  hud = new HUD();
 }
 
 void draw() {
@@ -23,19 +29,22 @@ void draw() {
 
   population.update();
 
+  hud.update();
+  hud.render();
+
   lifeCount++;
   if (lifeCount == lifespan) {
-    population.evaluate();
+    avgFit = population.evaluate();
     population.selection();
-
+    
     lifeCount = 0;
+    
+    hud.iterations++;
   }
 
-  float temp = population.populationArray.get(0).vel.mag();
-  println(lifeCount, temp);
-
-  fill(255, 200);
-  noStroke();
+  fill(255, 150);
+  stroke(255);
+  strokeWeight(2);
   ellipse(target.x, target.y, 30, 30);
 }
 

@@ -35,6 +35,7 @@ class Population {
       }
     }
     
+    hud.lastMax = maxFit;
     return total/this.populationArray.size();
   }
 
@@ -46,15 +47,16 @@ class Population {
     for (int I = 0; I < populationArray.size(); I++) {
       //Pick to diffrent parrents
       indexA = int(random(this.matingPool.size()));
-      do {
-        indexB = int(random(this.matingPool.size()));
-      } while (indexB == indexA);
+      indexB = int(random(this.matingPool.size()));
 
       //Get Parrents DNA and perform a crossover to a child dna.
       DNA parrentA = matingPool.get(indexA).dna;
       DNA parrentB = matingPool.get(indexB).dna;
       DNA child = parrentA.crossover(parrentB);
-
+      
+      //Perform a mutation on the child genes
+      child.mutation();
+      
       //Make a new Population of ants whith the child dna.
       newPopulation.add(new Ant(child));
     }

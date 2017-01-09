@@ -24,4 +24,13 @@ class DNA {
     }
     return new DNA(newGenes);
   }
+  
+  public void mutation(){
+    for (int I = 0; I < this.genes.size(); I++) {
+      if (random(1) < 0.01){
+        this.genes.set(I, PVector.random2D());
+        this.genes.get(I).setMag(0.1);
+      }
+    }
+  }
 }
