@@ -7,7 +7,7 @@ class DNA {
     } else {
       for (int I=0; I<lifespan; I++) {
         this.genes.add(PVector.random2D());
-        this.genes.get(I).setMag(0.1);
+        this.genes.get(I).setMag(maxForce);
       }
     }
   }
@@ -29,7 +29,7 @@ class DNA {
     for (int I = 0; I < this.genes.size(); I++) {
       if (random(1) < 0.01) {
         this.genes.set(I, PVector.random2D());
-        this.genes.get(I).setMag(0.1);
+        this.genes.get(I).setMag(maxForce);
       }
     }
   }

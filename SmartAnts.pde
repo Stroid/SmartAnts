@@ -1,8 +1,10 @@
 //SmartAnts
 //Ants using a Generic Algoritm to find a target
 
-int lifespan = 300;
+int lifespan = 200;
 int lifeCount = 0;
+
+float maxForce = 0.2;
 
 float avgFit = 0;
 
@@ -19,7 +21,7 @@ void setup() {
 
   population = new Population(20);
 
-  target = new PVector(width/2, 30);
+  target = new PVector(width/6*5, 30);
 
   hud = new HUD();
 }

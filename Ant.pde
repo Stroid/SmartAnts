@@ -14,10 +14,12 @@ class Ant {
   DNA dna;
 
   boolean finished;
+  boolean crashed;
   int finishFrame;
+  int crashFrame;
 
   public Ant(DNA... dna) {
-    this.pos = new PVector(width/2, height);
+    this.pos = new PVector(width/2, height-10);
     this.vel = new PVector();
     this.acc = new PVector();
     this.r = 7;
@@ -35,16 +37,28 @@ class Ant {
   public void update() {
     this.addForce(this.dna.genes.get(lifeCount));
 
+    checkFinish();
+    checkCrash();
+
+    if (!finished && !crashed) {
+      this.vel.add(this.acc); //add the combined forces to the velocity
+      this.pos.add(this.vel); //move the position by the velocity
+      this.acc.mult(0);       //clear the forces
+    }
+  }
+
+  public void checkFinish() {
     float d = dist(this.pos.x, this.pos.y, target.x, target.y);
     if (d<10 && !finished) {
       this.finished = true;
       this.finishFrame = lifeCount;
     }
+  }
 
-    if (!finished) {
-      this.vel.add(this.acc); //add the combined forces to the velocity
-      this.pos.add(this.vel); //move the position by the velocity
-      this.acc.mult(0);       //clear the forces
+  public void checkCrash() {
+    if (this.pos.x < this.r || this.pos.x > width-this.r || this.pos.y < this.r || this.pos.y > height-this.r) {
+      this.crashed = true;
+      this.crashFrame = lifeCount;
     }
   }
 
@@ -67,7 +81,10 @@ class Ant {
     this.fittnes = map(d, 0, width, width, 0);
 
     if (this.finished) {
-      this.fittnes *= map(finishFrame, 0, 300, 10, 1);
+      this.fittnes *= map(finishFrame, 0, lifespan, 10, 1);
+    }
+    if (this.crashed){
+      this.fittnes /= map(crashFrame, 0, lifespan, 1, 5);
     }
   }
 
