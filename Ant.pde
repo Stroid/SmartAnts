@@ -1,4 +1,4 @@
-class Ball {
+class Ant {
 
   PVector pos;
   PVector vel;
@@ -6,20 +6,25 @@ class Ball {
 
   float r;
   float stWeight;
+  float fittnes;
+
 
   color c;
 
   DNA dna;
 
-  public Ball(int x, int y, int r) {
-    pos = new PVector(x, y);
-    vel = new PVector();
-    acc = new PVector();
-
-    dna = new DNA();
-
-
-    this.r = clamp(r, 5, 50); //clamp the radius between a max and a min value.
+  public Ant(DNA... dna) {
+    this.pos = new PVector(width/2, height);
+    this.vel = new PVector();
+    this.acc = new PVector();
+    this.r = 7;
+    
+    if (dna.length > 0) {
+      this.dna = dna[0];
+    } else {
+      this.dna = new DNA();
+    }
+    
     stWeight = map(r, 5, 50, 1, 3); //map the stroke weight based on the radius.
     c = color(255); //set the Color of the ball
   }
@@ -37,17 +42,18 @@ class Ball {
     stroke(c);   //set the strokeColor to the 'c' color
     strokeWeight(stWeight); //set the strokeWeight
 
-    ball();
-  }
-
-  //draw the ball and rotate it by the heading of the velocity
-  private void ball() {
     pushMatrix();
     translate(this.pos.x, this.pos.y);
     rotate(this.vel.heading());
     ellipse(0, 0, this.r*2, this.r*2);
     line(0, 0, this.r, 0);
     popMatrix();
+  }
+
+  public void calcFit() {
+    float d = dist(this.pos.x, this.pos.y, target.x, target.y);
+
+    this.fittnes = map(d, 0, width, width, 0);
   }
 
   public void addForce(PVector force) {
