@@ -27,7 +27,7 @@ class DNA {
 
   public void mutation() {
     for (int I = 0; I < this.genes.size(); I++) {
-      if (random(1) < 0.01) {
+      if (random(1) < 0.005) {
         this.genes.set(I, PVector.random2D());
         this.genes.get(I).setMag(maxForce);
       }

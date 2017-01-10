@@ -1,7 +1,7 @@
 //SmartAnts
 //Ants using a Generic Algoritm to find a target
 
-int lifespan = 200;
+int lifespan = 400;
 int lifeCount = 0;
 
 float maxForce = 0.2;
@@ -16,14 +16,18 @@ PVector target;
 
 HUD hud;
 
+Obsticle obsticle;
+
 void setup() {
-  size(480, 360);
+  size(600, 500);
 
   population = new Population(20);
 
-  target = new PVector(width/6*5, 30);
+  target = new PVector(width/2, 30);
 
   hud = new HUD();
+  
+  obsticle = new Obsticle(width/2, height/2,250,20);
 }
 
 void draw() {
@@ -33,6 +37,8 @@ void draw() {
 
   hud.update();
   hud.render();
+
+  obsticle.render();
 
   lifeCount++;
   if (lifeCount == lifespan) {
@@ -47,6 +53,8 @@ void draw() {
   fill(255, 150);
   stroke(255);
   strokeWeight(2);
+  target.x = width/2;
+  target.y = 80; //<>//
   ellipse(target.x, target.y, 30, 30);
 }
 

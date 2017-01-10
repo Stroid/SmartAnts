@@ -59,6 +59,9 @@ class Ant {
     if (this.pos.x < this.r || this.pos.x > width-this.r || this.pos.y < this.r || this.pos.y > height-this.r) {
       this.crashed = true;
       this.crashFrame = lifeCount;
+    } else if (obsticle.isCrash(this.pos.x, this.pos.y)) {
+      this.crashed = true;
+      this.crashFrame = lifeCount;
     }
   }
 
@@ -81,10 +84,10 @@ class Ant {
     this.fittnes = map(d, 0, width, width, 0);
 
     if (this.finished) {
-      this.fittnes *= map(finishFrame, 0, lifespan, 10, 1);
+      this.fittnes *= map(finishFrame, 200, lifespan, 15, 5);
     }
-    if (this.crashed){
-      this.fittnes /= map(crashFrame, 0, lifespan, 1, 5);
+    if (this.crashed) {
+      this.fittnes /= 10;
     }
   }
 

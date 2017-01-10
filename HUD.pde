@@ -20,9 +20,9 @@ class HUD {
     fill(255);
     textSize(15);
 
-    text("Current Frame:"+lifeCount + "/" + lifespan, 10, 20);
-    text("Iteration:"+iterations, 10, 40);
-    text("Last max:"+int(lastMax), 10, 60);
-    text("Best Fittnes:"+int(best), 10, 80);
+    text("Frame:"+lifeCount + "/" + lifespan, 10, 20);
+    text("Iteration:"+iterations, 10, 35);
+    text("Last max:"+int(lastMax), 10, 50);
+    text("Best Fittnes:"+int(best), 10, 65);
   }
 }
