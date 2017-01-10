@@ -17,9 +17,10 @@ PVector target;
 HUD hud;
 
 Obsticle obsticle;
+Obsticle obsticle1;
 
 void setup() {
-  size(600, 500);
+  size(500, 800);
 
   population = new Population(20);
 
@@ -27,7 +28,8 @@ void setup() {
 
   hud = new HUD();
   
-  obsticle = new Obsticle(width/2, height/2,250,20);
+  obsticle = new Obsticle(width/3*2, height/3*2,250,20);
+  obsticle1 = new Obsticle(width/3, height/3, 250, 20);
 }
 
 void draw() {
@@ -39,6 +41,7 @@ void draw() {
   hud.render();
 
   obsticle.render();
+  obsticle1.render();
 
   lifeCount++;
   if (lifeCount == lifespan) {

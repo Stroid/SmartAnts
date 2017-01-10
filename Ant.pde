@@ -59,7 +59,7 @@ class Ant {
     if (this.pos.x < this.r || this.pos.x > width-this.r || this.pos.y < this.r || this.pos.y > height-this.r) {
       this.crashed = true;
       this.crashFrame = lifeCount;
-    } else if (obsticle.isCrash(this.pos.x, this.pos.y)) {
+    } else if (obsticle.isCrash(this.pos.x, this.pos.y) || obsticle1.isCrash(this.pos.x, this.pos.y)) {
       this.crashed = true;
       this.crashFrame = lifeCount;
     }
