@@ -37,13 +37,13 @@ class Ant {
   public void update() {
     this.addForce(this.dna.genes.get(lifeCount));
 
-    checkFinish();
-    checkCrash();
-
     if (!finished && !crashed) {
       this.vel.add(this.acc); //add the combined forces to the velocity
       this.pos.add(this.vel); //move the position by the velocity
       this.acc.mult(0);       //clear the forces
+
+      checkFinish();
+      checkCrash();
     }
   }
 
@@ -52,6 +52,7 @@ class Ant {
     if (d<10 && !finished) {
       this.finished = true;
       this.finishFrame = lifeCount;
+      finnishCount++;
     }
   }
 
@@ -59,9 +60,11 @@ class Ant {
     if (this.pos.x < this.r || this.pos.x > width-this.r || this.pos.y < this.r || this.pos.y > height-this.r) {
       this.crashed = true;
       this.crashFrame = lifeCount;
+      crashCount++;
     } else if (obsticle.isCrash(this.pos.x, this.pos.y) || obsticle1.isCrash(this.pos.x, this.pos.y)) {
       this.crashed = true;
       this.crashFrame = lifeCount;
+      crashCount++;
     }
   }
 
@@ -87,7 +90,7 @@ class Ant {
       this.fittnes *= map(finishFrame, 200, lifespan, 15, 5);
     }
     if (this.crashed) {
-      this.fittnes /= 10;
+      this.fittnes /= map(crashFrame, 200, lifespan, 15, 5);
     }
   }
 

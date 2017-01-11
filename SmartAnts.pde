@@ -19,6 +19,9 @@ HUD hud;
 Obsticle obsticle;
 Obsticle obsticle1;
 
+int crashCount = 0;
+int finnishCount = 0;
+
 void setup() {
   size(500, 800);
 
@@ -49,6 +52,9 @@ void draw() {
     population.selection();
 
     lifeCount = 0;
+
+    crashCount = 0;
+    finnishCount = 0;
 
     hud.iterations++;
   }

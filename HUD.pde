@@ -1,5 +1,7 @@
 class HUD {
 
+  ArrayList<String> debugText = new ArrayList();
+  
   int iterations;
 
   float lastMax;
@@ -18,11 +20,27 @@ class HUD {
 
   public void render() {
     fill(255);
-    textSize(15);
-
-    text("Frame:"+lifeCount + "/" + lifespan, 10, 20);
-    text("Iteration:"+iterations, 10, 35);
-    text("Last max:"+int(lastMax), 10, 50);
-    text("Best Fittnes:"+int(best), 10, 65);
+    
+    addText("Frame:"+lifeCount + "/" + lifespan);
+    addText("Iteration:"+iterations);
+    addText("Last max:"+int(lastMax));
+    addText("Best Fittnes:"+int(best));
+    addText("Crash count:" + crashCount);
+    addText("Finnish Count:" + finnishCount);
+    
+    this.displayText();
+  }
+  
+  public void addText(String s){
+    debugText.add(s);
+  }
+  
+  public void displayText(){
+    int tS = 15;
+    textSize(tS);
+    for(int I = 0; I<debugText.size(); I++){
+      text(debugText.get(I), 10, 20+tS*I);
+    }
+    debugText.clear();
   }
 }
