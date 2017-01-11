@@ -2,9 +2,6 @@ class Population {
   ArrayList<Ant> populationArray = new ArrayList();
   ArrayList<Ant> matingPool = new ArrayList();
 
-  Ant bestAnt = null;
-  Ant newBest;
-
   public Population(int n) {
     for (int I=0; I<n; I++) {
       populationArray.add(new Ant(color(0, 255, 0)));
@@ -22,14 +19,8 @@ class Population {
       this.populationArray.get(I).calcFit();
       if (this.populationArray.get(I).fittnes>maxFit) {
         maxFit = this.populationArray.get(I).fittnes;
-        this.newBest = this.populationArray.get(I);
       }
     }
-
-    if (this.bestAnt == null || this.newBest.fittnes>this.bestAnt.fittnes) {
-      this.bestAnt = new Ant(color(0, 255, 255), this.newBest.dna);
-    }
-
 
     for (int I = 0; I < this.populationArray.size(); I++) {
       this.populationArray.get(I).fittnes /= maxFit;
