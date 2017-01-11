@@ -69,11 +69,6 @@ class Population {
     for (int I=0; I<populationArray.size(); I++) {
       populationArray.get(I).update();
       populationArray.get(I).render();
-
-      if (bestAnt != null) {
-        this.bestAnt.update();
-        this.bestAnt.render();
-      }
     }
   }
 }

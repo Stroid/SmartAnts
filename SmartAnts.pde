@@ -44,7 +44,7 @@ void draw() {
   obsticle1.render();
 
   lifeCount++;
-  if (lifeCount == lifespan) {
+  if (lifeCount >= lifespan) {
     avgFit = population.evaluate();
     population.selection();
 
