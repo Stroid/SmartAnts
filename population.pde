@@ -2,9 +2,12 @@ class Population {
   ArrayList<Ant> populationArray = new ArrayList();
   ArrayList<Ant> matingPool = new ArrayList();
 
+  Ant bestAnt = null;
+  Ant newBest;
+
   public Population(int n) {
     for (int I=0; I<n; I++) {
-      populationArray.add(new Ant());
+      populationArray.add(new Ant(color(0, 255, 0)));
     }
   }
 
@@ -19,8 +22,14 @@ class Population {
       this.populationArray.get(I).calcFit();
       if (this.populationArray.get(I).fittnes>maxFit) {
         maxFit = this.populationArray.get(I).fittnes;
+        this.newBest = this.populationArray.get(I);
       }
     }
+
+    if (this.bestAnt == null || this.newBest.fittnes>this.bestAnt.fittnes) {
+      this.bestAnt = new Ant(color(0, 255, 255), this.newBest.dna);
+    }
+
 
     for (int I = 0; I < this.populationArray.size(); I++) {
       this.populationArray.get(I).fittnes /= maxFit;
@@ -58,7 +67,7 @@ class Population {
       child.mutation();
 
       //Make a new Population of ants whith the child dna.
-      newPopulation.add(new Ant(child));
+      newPopulation.add(new Ant(color(0, 255, 0), child));
     }
 
     //Replace the old population whith the new population.
@@ -69,6 +78,11 @@ class Population {
     for (int I=0; I<populationArray.size(); I++) {
       populationArray.get(I).update();
       populationArray.get(I).render();
+
+      if (bestAnt != null) {
+        this.bestAnt.update();
+        this.bestAnt.render();
+      }
     }
   }
 }

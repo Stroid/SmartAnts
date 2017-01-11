@@ -18,7 +18,7 @@ class Ant {
   int finishFrame;
   int crashFrame;
 
-  public Ant(DNA... dna) {
+  public Ant(color c, DNA... dna) {
     this.pos = new PVector(width/2, height-10);
     this.vel = new PVector();
     this.acc = new PVector();
@@ -31,7 +31,7 @@ class Ant {
     }
 
     stWeight = map(r, 5, 50, 1, 3); //map the stroke weight based on the radius.
-    c = color(0, 255, 0); //set the Color of the ball
+    this.c = c; //set the Color of the ball
   }
 
   public void update() {

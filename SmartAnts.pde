@@ -1,7 +1,7 @@
 //SmartAnts
 //Ants using a Generic Algoritm to find a target
 
-int lifespan = 400;
+int lifespan = 500;
 int lifeCount = 0;
 
 float maxForce = 0.2;
